@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ScannerActivity">
+
+    <ImageView
+        android:id="@+id/ivImagen"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="-20dp"
+        app:layout_constraintBottom_toTopOf="@+id/cvElementos"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@color/black"
+        tools:layout_editor_absoluteX="1dp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvElementos"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        app:cardCornerRadius="25dp"
+        app:contentPadding="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="-20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="16dp">
+
+        <!-- LinearLayout para el resto de los EditText -->
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="Analizando..."
+                android:textAlignment="textStart"
+                android:textSize="28dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/txtNomPlanta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Nombre cientifico"
+                android:inputType="text"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/txtSubNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Nombre Comun"
+                android:inputType="text"
+                android:textSize="16dp" />
+            <!-- Usamos ConstraintLayout para los EditText que estarán uno al lado del otro -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <!-- txtEdad -->
+                <EditText
+                    android:id="@+id/txtEdad"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Edad"
+                    android:inputType="number"
+                    android:textSize="16dp"
+                    app:layout_constraintEnd_toStartOf="@+id/txtCantRiego"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <!-- txtCantRiego, a la derecha de txtEdad -->
+                <EditText
+                    android:id="@+id/txtCantRiego"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:hint="Cantidad de regado (cL)"
+                    android:textSize="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/txtEdad" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <!-- Texto encima del Spinner -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Clima"
+                    android:textAlignment="textStart"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <!-- Spinner debajo del texto -->
+                <Spinner
+                    android:id="@+id/spinnerClima"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/txtPais"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Pais"
+                android:inputType="text"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/txtExtraInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:hint="Informacion Extra"
+                android:inputType="text"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btnAnadir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/darkGreen"
+                android:text="Añadir" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,196 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGreen"
+    tools:context=".PlantDetailActivity">
+
+    <!-- CardView para la imagen -->
+
+    <!-- CardView para los detalles de la planta -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toTopOf="@+id/cvElementos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.402">
+
+        <ImageView
+            android:id="@+id/ivPlant"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:contentDescription="prueba"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@tools:sample/avatars" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvElementos"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="25dp"
+        app:contentPadding="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Nombre Científico -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre Científico"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/txtNomPlanta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Ejemplo Planta"
+                android:textSize="16dp" />
+
+            <!-- Nombre Común -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre Común"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/txtSubNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Ejemplo Planta"
+                android:textSize="16dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/textoEdad"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Edad"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/textoCant"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/textoCant"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Cantidad de Riego"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textoEdad" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Edad y Cantidad de Riego -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp">
+
+                <TextView
+                    android:id="@+id/txtEdad"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    tools:text="5 "
+                    android:textSize="16dp"
+                    app:layout_constraintEnd_toStartOf="@+id/txtCantRiego"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtCantRiego"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    tools:text="500 ml"
+                    android:textSize="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/txtEdad" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Clima -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Clima"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/txtClima"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Tropical"
+                android:textSize="16dp" />
+
+            <!-- País -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="País"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/txtPais"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Brasil"
+                android:textSize="16dp" />
+
+            <!-- Información Extra -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Información Extra"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/txtExtraInfo"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                tools:text="Es una planta tropical con propiedades medicinales."
+                android:textSize="16dp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
