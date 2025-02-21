@@ -13,7 +13,7 @@ import com.example.aplicacion_multimedia_adrian_alvaro.databinding.ActivityMainB
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var plants: List<Plant>
+    private var plants: List<Plant>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -38,6 +38,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         binding.rvPlants.layoutManager = LinearLayoutManager(this)
-        binding.rvPlants.adapter = PlantAdapter(plants)
+        if (plants?.isNotEmpty() == true){
+            binding.rvPlants.adapter = PlantAdapter(plants!!)
+        }
     }
 }

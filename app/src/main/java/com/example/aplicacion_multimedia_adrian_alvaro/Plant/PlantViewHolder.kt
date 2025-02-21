@@ -9,8 +9,8 @@ class PlantViewHolder(private val binding: ActivityPlantViewBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(plant: Plant) {
-        binding.tvNombre.text = plant.commonName
-        binding.tvLatin.text = plant.latinName
+        binding.tvNombre.text = plant.nombre
+        binding.tvLatin.text = plant.latin
         binding.ivPlantImage.setImageResource(plant.imageResId) // Cargar imagen local
     }
 

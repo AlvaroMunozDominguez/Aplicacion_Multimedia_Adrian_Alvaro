@@ -8,6 +8,7 @@ data class Plant(
     val pais: String,
     val edad: Int,
     val cantidadRiego: String,
+    val imageResId: Int,
     val imageUrl: String?,
     val extraInfo: String
 )

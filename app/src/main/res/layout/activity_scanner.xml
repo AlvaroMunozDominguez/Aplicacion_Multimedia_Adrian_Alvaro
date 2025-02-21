@@ -28,7 +28,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="16dp">
+        tools:layout_editor_absoluteX="16dp"
+        android:backgroundTint="@color/white">
 
         <!-- LinearLayout para el resto de los EditText -->
         <LinearLayout
@@ -46,7 +47,8 @@
                 android:text="Analizando..."
                 android:textAlignment="textStart"
                 android:textSize="28dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
 
             <EditText
                 android:id="@+id/txtNomPlanta"
@@ -55,6 +57,8 @@
                 android:ems="10"
                 android:hint="Nombre cientifico"
                 android:inputType="text"
+                android:textColor="@color/gray"
+                android:textColorHint="@color/gray"
                 android:textSize="20dp" />
 
             <EditText
@@ -64,6 +68,8 @@
                 android:ems="10"
                 android:hint="Nombre Comun"
                 android:inputType="text"
+                android:textColor="@color/gray"
+                android:textColorHint="@color/gray"
                 android:textSize="16dp" />
             <!-- Usamos ConstraintLayout para los EditText que estarán uno al lado del otro -->
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,6 +85,8 @@
                     android:ems="10"
                     android:hint="Edad"
                     android:inputType="number"
+                    android:textColor="@color/gray"
+                    android:textColorHint="@color/gray"
                     android:textSize="16dp"
                     app:layout_constraintEnd_toStartOf="@+id/txtCantRiego"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -89,8 +97,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="number"
                     android:hint="Cantidad de regado (cL)"
+                    android:inputType="number"
+                    android:textColor="@color/gray"
+                    android:textColorHint="@color/gray"
                     android:textSize="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/txtEdad" />
@@ -111,7 +121,8 @@
                     android:text="Clima"
                     android:textAlignment="textStart"
                     android:textSize="18dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
                 <!-- Spinner debajo del texto -->
                 <Spinner
@@ -130,6 +141,8 @@
                 android:ems="10"
                 android:hint="Pais"
                 android:inputType="text"
+                android:textColor="@color/gray"
+                android:textColorHint="@color/gray"
                 android:textSize="16dp" />
 
             <EditText
@@ -140,6 +153,8 @@
                 android:ems="10"
                 android:hint="Informacion Extra"
                 android:inputType="text"
+                android:textColor="@color/gray"
+                android:textColorHint="@color/gray"
                 android:textSize="16dp" />
 
             <Button

@@ -31,7 +31,8 @@
                 android:layout_height="150dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="4dp"
-                app:cardUseCompatPadding="true">
+                app:cardUseCompatPadding="true"
+                android:backgroundTint="@color/white">
 
                 <ImageView
                     android:id="@+id/ivPlantImage"
@@ -57,7 +58,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="Nombre común"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
