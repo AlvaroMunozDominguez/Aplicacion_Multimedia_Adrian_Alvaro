@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 
-class PlantAdapter(private val plantList: List<Plant>, private val onClick: (Plant) -> Unit) :
+class PlantAdapter(private var plantList: List<Plant>, private val onClick: (Plant) -> Unit) :
     RecyclerView.Adapter<PlantViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantViewHolder {
@@ -21,5 +21,12 @@ class PlantAdapter(private val plantList: List<Plant>, private val onClick: (Pla
     override fun getItemCount(): Int {
         Log.d("ADAPTER", "Elementos en Adapter: ${plantList.size}")  // 🔍 Verifica cuántos elementos hay
         return plantList.size
+    }
+
+    // Función para actualizar la lista sin necesidad de crear un nuevo adapter
+    fun updateList(newList: List<Plant>) {
+        plantList = newList
+        notifyDataSetChanged()  // Notificar cambios en los datos
+        Log.d("ADAPTER", "Lista actualizada con ${plantList.size} elementos")  // Debugging
     }
 }

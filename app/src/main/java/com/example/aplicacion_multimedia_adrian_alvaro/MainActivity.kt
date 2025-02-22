@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var plants: List<Plant>? = null
+    private lateinit var adapter: PlantAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -49,8 +51,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         binding.rvPlants.layoutManager = LinearLayoutManager(this)
+        binding.rvPlants.setHasFixedSize(true)
+        
+        adapter = PlantAdapter(emptyList()) { plant -> openPlantDetail(plant) }
+        binding.rvPlants.adapter = adapter  // Inicializar con lista vacía
 
-        val databaseRef = FirebaseDatabase.getInstance("https://plantitas-8b08a-default-rtdb.europe-west1.firebasedatabase.app").getReference("Plantitas")
+        val databaseRef = FirebaseDatabase.getInstance("https://plantitas-8b08a-default-rtdb.europe-west1.firebasedatabase.app")
+            .getReference("Plantitas")
+
         databaseRef.get().addOnSuccessListener { snapshot ->
             val plantList = mutableListOf<Plant>()
 
@@ -58,18 +66,14 @@ class MainActivity : AppCompatActivity() {
                 val plant = data.getValue(Plant::class.java)
                 if (plant != null) {
                     plantList.add(plant)
-                    Log.d("FIREBASE", "Planta agregada: ${plant.nombre}")  // 🔍 Verifica cada planta cargada
+                    Log.d("FIREBASE", "Planta agregada: ${plant.nombre}")  // Debugging
                 }
             }
 
-            Log.d("FIREBASE", "Total de plantas cargadas: ${plantList.size}")  // 🔍 Verifica el total de plantas
+            Log.d("FIREBASE", "Total de plantas cargadas: ${plantList.size}")  // Debugging
 
-            // 🚀 Asegurar que el RecyclerView recibe la lista completa
             if (plantList.isNotEmpty()) {
-                val adapter = PlantAdapter(plantList) { plant -> openPlantDetail(plant) }
-                binding.rvPlants.adapter = adapter
-                adapter.notifyDataSetChanged()  // 🔄 Forzar actualización
-                Log.d("ADAPTER", "RecyclerView actualizado con ${plantList.size} elementos")
+                adapter.updateList(plantList)  // Usamos updateList()
             } else {
                 Log.e("FIREBASE", "No se encontraron plantas en Firebase")
             }
