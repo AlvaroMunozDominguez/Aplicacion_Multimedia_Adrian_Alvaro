@@ -17,8 +17,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.aplicacion_multimedia_adrian_alvaro.Plant.Plant
 import com.example.aplicacion_multimedia_adrian_alvaro.databinding.ActivityScannerBinding
+import com.google.firebase.database.FirebaseDatabase
 import java.io.File
+import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -42,10 +45,48 @@ class ScannerActivity : AppCompatActivity() {
         setupSpinner()
 
         binding.btnAnadir.setOnClickListener{
-            //TODO subir los datos a firebase
-            finish()
+            val imagePath = saveImageLocally() ?: "" // Si hay error, usa un string vacío // Guarda la imagen en la carpeta de la app
+
+            val plant = Plant(
+                id = System.currentTimeMillis().toInt(),
+                nombre = binding.txtNomPlanta.text.toString(),  // Nombre científico
+                latin = binding.txtSubNombre.text.toString(),  // Nombre común
+                clima = binding.spinnerClima.selectedItem.toString(),
+                pais = binding.txtPais.text.toString(),
+                edad = binding.txtEdad.text.toString().toIntOrNull() ?: 0,  // Edad
+                cantidadRiego = binding.txtCantRiego.text.toString(),  // Cantidad de riego
+                imageResId = 0, // No lo necesitamos si usamos rutas locales
+                imageUrl = imagePath, // Guardamos la ruta local de la imagen
+                extraInfo = binding.txtExtraInfo.text.toString() // Información extra
+            )
+
+            val databaseRef = FirebaseDatabase.getInstance("https://plantitas-8b08a-default-rtdb.europe-west1.firebasedatabase.app").getReference("Plantitas")
+            databaseRef.child(plant.id.toString()).setValue(plant)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Planta guardada correctamente", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Error al guardar en la base de datos", Toast.LENGTH_SHORT).show()
+                }
         }
     }
+
+    private fun saveImageLocally(): String {
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val fileName = "IMG_$timeStamp.jpg"
+        val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES) // Carpeta interna de la app
+        val imageFile = File(storageDir, fileName)
+
+        contentResolver.openInputStream(photoUri)?.use { inputStream ->
+            FileOutputStream(imageFile).use { outputStream ->
+                inputStream.copyTo(outputStream)
+            }
+        }
+
+        return imageFile.absolutePath // Ruta de la imagen guardada
+    }
+
 
     private fun setupSpinner() {
         // Definimos un arreglo con los climas
