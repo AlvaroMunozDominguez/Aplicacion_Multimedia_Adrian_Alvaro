@@ -1,14 +1,14 @@
 package com.example.aplicacion_multimedia_adrian_alvaro.Plant
 
 data class Plant(
-    val id: Int,
-    val nombre: String,
-    val latin: String,
-    val clima: String,
-    val pais: String,
-    val edad: Int,
-    val cantidadRiego: String,
-    val imageResId: Int,
-    val imageUrl: String?,
-    val extraInfo: String
+    val id: Int = 0,
+    val nombre: String = "",
+    val latin: String = "",
+    val clima: String = "",
+    val pais: String = "",
+    val edad: Int = 0,
+    val cantidadRiego: String = "",
+    val imageResId: Int = 0,
+    val imageUrl: String? = null,
+    val extraInfo: String = ""
 )
