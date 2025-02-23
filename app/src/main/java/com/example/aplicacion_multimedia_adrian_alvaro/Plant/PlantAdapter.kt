@@ -19,7 +19,7 @@ class PlantAdapter(private var plantList: List<Plant>, private val onClick: (Pla
 
     //override fun getItemCount(): Int = plantList.size
     override fun getItemCount(): Int {
-        Log.d("ADAPTER", "Elementos en Adapter: ${plantList.size}")  // 🔍 Verifica cuántos elementos hay
+        Log.d("ADAPTER", "Elementos en Adapter: ${plantList.size}")  //Verifica cuántos elementos hay, debugging.
         return plantList.size
     }
 
@@ -27,6 +27,6 @@ class PlantAdapter(private var plantList: List<Plant>, private val onClick: (Pla
     fun updateList(newList: List<Plant>) {
         plantList = newList
         notifyDataSetChanged()  // Notificar cambios en los datos
-        Log.d("ADAPTER", "Lista actualizada con ${plantList.size} elementos")  // Debugging
+        Log.d("ADAPTER", "Lista actualizada con ${plantList.size} elementos")  //Debugging
     }
 }
