@@ -10,6 +10,10 @@ class PlantAdapter(private var plantList: List<Plant>, private val onClick: (Pla
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantViewHolder {
         return PlantViewHolder.from(parent)
+
+        /*val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ActivityPlantViewBinding.inflate(layoutInflater, parent, false)
+        return PlantViewHolder(binding)*/
     }
 
     override fun onBindViewHolder(holder: PlantViewHolder, position: Int) {
@@ -23,10 +27,10 @@ class PlantAdapter(private var plantList: List<Plant>, private val onClick: (Pla
         return plantList.size
     }
 
-    // Función para actualizar la lista sin necesidad de crear un nuevo adapter
+    //Función para actualizar la lista sin necesidad de crear un nuevo adapter
     fun updateList(newList: List<Plant>) {
         plantList = newList
-        notifyDataSetChanged()  // Notificar cambios en los datos
+        notifyDataSetChanged()  //Notificar cambios en los datos
         Log.d("ADAPTER", "Lista actualizada con ${plantList.size} elementos")  //Debugging
     }
 }
