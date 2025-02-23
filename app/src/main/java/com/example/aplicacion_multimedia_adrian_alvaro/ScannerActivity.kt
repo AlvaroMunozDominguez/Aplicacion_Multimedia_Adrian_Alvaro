@@ -40,7 +40,7 @@ class ScannerActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        //changeCVSize(100)
+        changeCVSize(100)
         checkPermissions()
         setupSpinner()
 
@@ -144,13 +144,13 @@ class ScannerActivity : AppCompatActivity() {
     private val takePictureLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
         if (success) {
             binding.ivImagen.setImageURI(photoUri)
-            //changeCVSizeWithDelay(500)
+            changeCVSizeWithDelay(500)
         } else {
             Toast.makeText(this, "Error al tomar la foto", Toast.LENGTH_SHORT).show()
         }
     }
 
-    /*
+
     //region CVSIZE
     //Método para animar el cambio de tamaño del CardView
     private fun animateCVSizeChange(size: Int) {
@@ -186,5 +186,5 @@ class ScannerActivity : AppCompatActivity() {
         layoutParams.height = heightInPixels
         binding.cvElementos.layoutParams = layoutParams
     }
-    //endregion */
+    //endregion
 }

@@ -25,11 +25,12 @@
 
         <ImageView
             android:id="@+id/ivPlant"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:contentDescription="prueba"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             tools:srcCompat="@tools:sample/avatars" />
+s
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView

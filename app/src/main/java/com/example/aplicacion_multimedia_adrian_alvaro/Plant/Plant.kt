@@ -1,5 +1,4 @@
 package com.example.aplicacion_multimedia_adrian_alvaro.Plant
-
 data class Plant(
     val id: Int = 0,
     val nombre: String = "",
@@ -11,4 +10,6 @@ data class Plant(
     val imageResId: Int = 0,
     val imageUrl: String? = null,
     val extraInfo: String = ""
-)
+) {
+    constructor() : this(0, "", "", "", "", 0, "", 0, null, "")
+}
