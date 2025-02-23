@@ -11,7 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aplicacion_multimedia_adrian_alvaro.Plant.Plant
 import com.example.aplicacion_multimedia_adrian_alvaro.Plant.PlantAdapter
 import com.example.aplicacion_multimedia_adrian_alvaro.databinding.ActivityMainBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class MainActivity : AppCompatActivity() {
 
@@ -51,35 +54,33 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         binding.rvPlants.layoutManager = LinearLayoutManager(this)
-        binding.rvPlants.setHasFixedSize(true)
-        
         adapter = PlantAdapter(emptyList()) { plant -> openPlantDetail(plant) }
-        binding.rvPlants.adapter = adapter  // Inicializar con lista vacía
+        binding.rvPlants.adapter = adapter  // Se inicializa vacío
 
         val databaseRef = FirebaseDatabase.getInstance("https://plantitas-8b08a-default-rtdb.europe-west1.firebasedatabase.app")
             .getReference("Plantitas")
 
-        databaseRef.get().addOnSuccessListener { snapshot ->
-            val plantList = mutableListOf<Plant>()
+        // 🔥 Escuchar cambios en tiempo real en Firebase
+        databaseRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val plantList = mutableListOf<Plant>()
 
-            snapshot.children.forEach { data ->
-                val plant = data.getValue(Plant::class.java)
-                if (plant != null) {
-                    plantList.add(plant)
-                    Log.d("FIREBASE", "Planta agregada: ${plant.nombre}")  // Debugging
+                snapshot.children.forEach { data ->
+                    val plant = data.getValue(Plant::class.java)
+                    if (plant != null) {
+                        plantList.add(plant)
+                        Log.d("FIREBASE", "Planta agregada: ${plant.nombre}") //Debugging
+                    }
                 }
+
+                Log.d("FIREBASE", "Total de plantas cargadas: ${plantList.size}") //Debugging
+                adapter.updateList(plantList)  //Actualiza la lista sin recargar el RecyclerView completo.
             }
 
-            Log.d("FIREBASE", "Total de plantas cargadas: ${plantList.size}")  // Debugging
-
-            if (plantList.isNotEmpty()) {
-                adapter.updateList(plantList)  // Usamos updateList()
-            } else {
-                Log.e("FIREBASE", "No se encontraron plantas en Firebase")
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("FIREBASE", "Error al obtener datos: ${error.message}")
             }
-        }.addOnFailureListener {
-            Toast.makeText(this, "Error al cargar las plantas", Toast.LENGTH_SHORT).show()
-        }
+        })
     }
 
 }
