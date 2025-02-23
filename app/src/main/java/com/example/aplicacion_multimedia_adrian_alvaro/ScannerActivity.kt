@@ -40,24 +40,24 @@ class ScannerActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        changeCVSize(100)
+        //changeCVSize(100)
         checkPermissions()
         setupSpinner()
 
         binding.btnAnadir.setOnClickListener{
-            val imagePath = saveImageLocally() ?: "" // Si hay error, usa un string vacío // Guarda la imagen en la carpeta de la app
+            val imagePath = saveImageLocally() ?: "" //Si hay error, usa un string vacío //Guarda la imagen en la carpeta de la app
 
             val plant = Plant(
                 id = System.currentTimeMillis().toInt(),
-                nombre = binding.txtNomPlanta.text.toString(),  // Nombre científico
-                latin = binding.txtSubNombre.text.toString(),  // Nombre común
+                nombre = binding.txtNomPlanta.text.toString(),  //Nombre científico
+                latin = binding.txtSubNombre.text.toString(),  //Nombre común
                 clima = binding.spinnerClima.selectedItem.toString(),
                 pais = binding.txtPais.text.toString(),
-                edad = binding.txtEdad.text.toString().toIntOrNull() ?: 0,  // Edad
-                cantidadRiego = binding.txtCantRiego.text.toString(),  // Cantidad de riego
+                edad = binding.txtEdad.text.toString().toIntOrNull() ?: 0,  //Edad
+                cantidadRiego = binding.txtCantRiego.text.toString(),  //Cantidad de riego
                 imageResId = 0, // No lo necesitamos si usamos rutas locales
-                imageUrl = imagePath, // Guardamos la ruta local de la imagen
-                extraInfo = binding.txtExtraInfo.text.toString() // Información extra
+                imageUrl = imagePath, //Guardamos la ruta local de la imagen
+                extraInfo = binding.txtExtraInfo.text.toString() //Información extra
             )
 
             val databaseRef = FirebaseDatabase.getInstance("https://plantitas-8b08a-default-rtdb.europe-west1.firebasedatabase.app").getReference("Plantitas")
@@ -89,26 +89,26 @@ class ScannerActivity : AppCompatActivity() {
 
 
     private fun setupSpinner() {
-        // Definimos un arreglo con los climas
+        //Definimos un array con los climas.
         val biomas = arrayOf(
             "Desierto", "Bosque templado", "Selva tropical", "Pradera", "Estepa",
             "Mediterraneo", "Tundra", "Sabana", "Manglar", "Marisma",
             "Bosque lluvioso", "Alpino", "Taiga", "Chaparral", "Pantano"
         )
-        // Creamos un ArrayAdapter usando el arreglo de climas
+        //Creamos un ArrayAdapter usando el array de climas.
         val adapter = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_item,
             biomas
         )
 
-        // Especificamos cómo se verá el item seleccionado (opcional)
+        //Especificamos cómo se verá el item seleccionado.
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
-        // Establecemos el adapter al Spinner
+        //Establecemos el adapter al Spinner
         binding.spinnerClima.adapter = adapter
 
-        // Añadimos un OnItemSelectedListener para escuchar las selecciones
+        //Añadimos un OnItemSelectedListener para escuchar las selecciones
         binding.spinnerClima.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: android.view.View?, position: Int, id: Long) {
                 val selectedClima = parent.getItemAtPosition(position).toString()
@@ -144,22 +144,23 @@ class ScannerActivity : AppCompatActivity() {
     private val takePictureLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
         if (success) {
             binding.ivImagen.setImageURI(photoUri)
-            changeCVSizeWithDelay(500)
+            //changeCVSizeWithDelay(500)
         } else {
             Toast.makeText(this, "Error al tomar la foto", Toast.LENGTH_SHORT).show()
         }
     }
 
+    /*
     //region CVSIZE
-    // Método para animar el cambio de tamaño del CardView
+    //Método para animar el cambio de tamaño del CardView
     private fun animateCVSizeChange(size: Int) {
         val layoutParams = binding.cvElementos.layoutParams
         val density = resources.displayMetrics.density
         val targetHeight = (size * density).toInt()
 
         val animator = ValueAnimator.ofInt(layoutParams.height, targetHeight)
-        animator.duration = 500  // Duración de la animación (500 ms)
-        animator.interpolator = DecelerateInterpolator()  // Interpolador para que sea suave
+        animator.duration = 500  //Duración de la animación (500 ms)
+        animator.interpolator = DecelerateInterpolator()  //Interpolador para que sea suave
 
         animator.addUpdateListener { animation ->
             layoutParams.height = animation.animatedValue as Int
@@ -177,7 +178,7 @@ class ScannerActivity : AppCompatActivity() {
 
      }
 
-    // Método para cambiar el tamaño del CardView
+    //Método para cambiar el tamaño del CardView
     private fun changeCVSize(size: Int) {
         val layoutParams = binding.cvElementos.layoutParams
         val density = resources.displayMetrics.density
@@ -185,5 +186,5 @@ class ScannerActivity : AppCompatActivity() {
         layoutParams.height = heightInPixels
         binding.cvElementos.layoutParams = layoutParams
     }
-    //endregion
+    //endregion */
 }

@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun openPlantDetail(plant: Plant) {
         val intent = Intent(this, PlantDetailActivity::class.java).apply {
-            putExtra("plant_id", plant.id) // Solo pasamos el ID
+            putExtra("plant_id", plant.id) //Solo pasamos el ID, cogemos el resto de info de la BD.
         }
         startActivity(intent)
     }
@@ -55,12 +55,12 @@ class MainActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         binding.rvPlants.layoutManager = LinearLayoutManager(this)
         adapter = PlantAdapter(emptyList()) { plant -> openPlantDetail(plant) }
-        binding.rvPlants.adapter = adapter  // Se inicializa vacío
+        binding.rvPlants.adapter = adapter  //Se inicializa vacío
 
         val databaseRef = FirebaseDatabase.getInstance("https://plantitas-8b08a-default-rtdb.europe-west1.firebasedatabase.app")
             .getReference("Plantitas")
 
-        // 🔥 Escuchar cambios en tiempo real en Firebase
+        //Escuchar cambios en tiempo real en Firebase
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val plantList = mutableListOf<Plant>()

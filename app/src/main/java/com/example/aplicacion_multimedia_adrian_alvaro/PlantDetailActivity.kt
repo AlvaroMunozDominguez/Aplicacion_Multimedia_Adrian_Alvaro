@@ -28,10 +28,10 @@ class PlantDetailActivity : AppCompatActivity() {
             return
         }
 
-        // Referencia a Firebase Database
+        //Referencia a Firebase Database
         databaseRef = FirebaseDatabase.getInstance("https://plantitas-8b08a-default-rtdb.europe-west1.firebasedatabase.app").getReference("Plantitas").child(plantId.toString())
 
-        // Obtener datos de la planta desde Firebase
+        //Obtener datos de la planta desde Firebase
         loadPlantDetails()
     }
 
@@ -59,12 +59,12 @@ class PlantDetailActivity : AppCompatActivity() {
         binding.txtCantRiego.text = plant.cantidadRiego
         binding.txtExtraInfo.text = plant.extraInfo
 
-        // Cargar imagen desde almacenamiento local
+        //Cargar imagen desde almacenamiento local
         val imgFile = File(plant.imageUrl)
         if (imgFile.exists()) {
             binding.ivPlant.setImageURI(Uri.fromFile(imgFile))
         } else {
-            binding.ivPlant.setImageResource(R.drawable.olivo) // Imagen por defecto si no se encuentra
+            binding.ivPlant.setImageResource(R.drawable.olivo) //Imagen por defecto si no se encuentra
         }
     }
 }
